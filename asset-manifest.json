@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/StudyDaddy/static/css/main.4da62354.css",
+    "main.js": "/StudyDaddy/static/js/main.bd9a02ec.js",
+    "static/js/787.83bea977.chunk.js": "/StudyDaddy/static/js/787.83bea977.chunk.js",
+    "static/media/logo192.JPG": "/StudyDaddy/static/media/logo192.ba315c42f4326076d8ba.JPG",
+    "index.html": "/StudyDaddy/index.html",
+    "main.4da62354.css.map": "/StudyDaddy/static/css/main.4da62354.css.map",
+    "main.bd9a02ec.js.map": "/StudyDaddy/static/js/main.bd9a02ec.js.map",
+    "787.83bea977.chunk.js.map": "/StudyDaddy/static/js/787.83bea977.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4da62354.css",
+    "static/js/main.bd9a02ec.js"
+  ]
+}
