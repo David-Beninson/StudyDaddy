@@ -9,7 +9,7 @@ export const ColorModeContext = React.createContext({
 export default function ToggleColorMode() {
   const date = new Date();
   const hour = date.getHours();
-  const isDayTime = hour > 6 && hour > 20;
+  const isDayTime = hour > 6 && hour < 20;
 
   const [mode, setMode] = React.useState(isDayTime ? "light" : "dark");
   const colorMode = React.useMemo(
