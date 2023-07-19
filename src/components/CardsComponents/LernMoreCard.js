@@ -7,6 +7,7 @@ const cardStyle = {
   padding: "2rem",
   marginBottom: "2rem",
   textAlign: "center",
+  color: "black",
   boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Light shadow
 };
 

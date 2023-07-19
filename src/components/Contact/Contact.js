@@ -4,12 +4,13 @@ import EmailIcon from "@mui/icons-material/Email";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 const cardStyle = {
-  background: "#fff", // White background
+  background: "#fff",
   borderRadius: "1rem",
   padding: "2rem",
   marginBottom: "2rem",
   textAlign: "center",
-  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Light shadow
+  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+  color: "black",
 };
 
 const iconStyle = {

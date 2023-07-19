@@ -29,6 +29,7 @@ const headingStyle = {
 
 const textStyle = {
   fontSize: "18px",
+  color: "black",
   marginBottom: "1rem",
 };
 
