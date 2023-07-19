@@ -1,132 +1,220 @@
 import * as React from "react";
+import "./styles.css";
 import About from "./About/About";
 import IntroducingCard from "./CardsComponents/IntroducingCard";
 import LernMoreCard from "./CardsComponents/LernMoreCard";
 import Contact from "./Contact/Contact";
-import HomeIcon from "@mui/icons-material/Home";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import HomeIcon from "@mui/icons-material/Home";
+import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
+import ContactSupportOutlinedIcon from "@mui/icons-material/ContactSupportOutlined";
+import LanguageSharpIcon from "@mui/icons-material/LanguageSharp";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import {
-  Drawer,
+  useTheme,
+  useMediaQuery,
+  IconButton,
+  Button,
+  Typography,
+  Box,
+  Toolbar,
+  Slide,
+  useScrollTrigger,
+  Fab,
+  Select,
+  MenuItem,
+  FormControl,
+  InputAdornment,
   List,
   ListItem,
   ListItemText,
-  IconButton,
-  Typography,
-  Box,
-  BottomNavigation,
-  BottomNavigationAction,
-  Button,
-  Zoom,
+  Drawer,
 } from "@mui/material";
 
-export default function NavBar({ theme, colorMode, color }) {
-  const [value, setValue] = React.useState("Home");
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [showPopup, setShowPopup] = React.useState(false);
+// Styling for the navigation bar
+const navbarStyle = {
+  backgroundColor: "#6200ea", // Use your desired background color
+  padding: "1rem",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+};
+
+// Styling for the buttons in the navigation bar
+const buttonStyle = {
+  color: "#fff", // White color for text
+  marginLeft: "1rem",
+  marginRight: "1rem",
+};
+
+// Styling for the color mode toggle button
+const colorModeButtonStyle = {
+  color: "#fff", // White color for text
+};
+
+function ElevationScroll({ children }) {
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+  });
+}
+
+function ScrollTop({ children, window }) {
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      "#back-to-top-anchor"
+    );
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
+  return (
+    <Slide appear={false} direction="up" in={trigger}>
+      <Fab
+        color="none"
+        size="small"
+        onClick={handleClick}
+        style={{ position: "fixed", bottom: 16, right: 16 }}
+      >
+        <KeyboardArrowUpIcon />
+      </Fab>
+    </Slide>
+  );
+}
+
+export default function NavBar({
+  colorMode,
+  color,
+  handleChange,
+  handleOpen,
+  open,
+  language,
+}) {
   const [smallOrLarg, setSmallOrLarg] = React.useState(null);
   const [prevScreen, setPrevScreen] = React.useState(smallOrLarg);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
   const muiTheme = useTheme();
   const isSmallScreen = useMediaQuery(muiTheme.breakpoints.down("sm"));
-
-  React.useEffect(() => {
-    isSmallScreen ? setSmallOrLarg("small") : setSmallOrLarg("larg");
-    if (smallOrLarg !== prevScreen) {
-      window.location.reload();
-    }
-  }, [isSmallScreen]);
-
-  const handleChange = (event, newValue) => {
-    setDrawerOpen(false);
-    setValue(newValue);
-  };
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
   };
 
-  const handlePopup = () => {
-    setShowPopup(!showPopup);
+  React.useEffect(() => {
+    setSmallOrLarg(isSmallScreen ? "small" : "larg");
+    if (smallOrLarg !== prevScreen) {
+      window.location.reload();
+    }
+  }, [isSmallScreen]);
+
+  const navigateToSection = async (id) => {
+    const element = document.querySelector(id);
+    if (element) {
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+          resolve();
+        }, 0)
+      );
+    }
   };
+
   return (
-    <>
-      {!isSmallScreen && (
-        <Box sx={{ position: "absolute", top: 0, right: 0 }}>
-          <IconButton
-            sx={{ ml: 1 }}
-            onClick={() => {
-              colorMode.toggleColorMode();
-            }}
-            color="inherit"
-          >
-            {color === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
-          </IconButton>
-        </Box>
-      )}
-      <Box>
-        <Typography
-          marginTop={10}
-          textAlign={"center"}
-          variant="h2"
-          align="center"
-        >
-          Study Daddy
-        </Typography>
-        <Box
-          sx={{
-            display: { xs: "block", sm: "none" },
-            position: "absolute",
-            top: 0,
-            right: 0,
+    <div>
+      <nav style={{ top: 0 }}>
+        <div
+          style={{
+            display: "flex",
+            top: "0",
           }}
         >
-          <IconButton onClick={handleDrawerToggle}>
-            <MenuIcon />
-          </IconButton>
-        </Box>
-
-        {showPopup && (
+          <FormControl>
+            <Select
+              id="language-select"
+              startAdornment={
+                <InputAdornment>
+                  <LanguageSharpIcon
+                    style={{ color: color === "dark" ? "black" : "white" }}
+                  />
+                </InputAdornment>
+              }
+              open={open}
+              value={language}
+              onChange={handleChange}
+              onClick={handleOpen}
+            >
+              <MenuItem value="">English</MenuItem>
+              <MenuItem value="he">עברית</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+        {!isSmallScreen && (
           <>
-            <div
-              style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
               }}
-              onClick={() => {
-                handlePopup();
-              }}
-            />
-            <Zoom in={showPopup} timeout={1000}>
-              <div
-                style={{
-                  position: "fixed",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
+            >
+              <Button
+                onClick={async () => {
+                  navigateToSection("#home");
                 }}
               >
-                <Contact handlePopup={handlePopup} showPopup={showPopup} />
-              </div>
-            </Zoom>
+                <HomeIcon />
+              </Button>
+              <Button
+                onClick={async () => {
+                  navigateToSection("#learn-more");
+                }}
+              >
+                About
+              </Button>
+              <Button
+                onClick={async () => {
+                  navigateToSection("#about");
+                }}
+              >
+                <InfoOutlinedIcon />
+              </Button>
+              <Button
+                onClick={async () => {
+                  navigateToSection("#contact");
+                }}
+              >
+                <ContactSupportOutlinedIcon />
+              </Button>
+            </Box>
+            <Box sx={{ position: "absolute", top: 0, right: 0 }}>
+              <IconButton
+                sx={{ ml: 1 }}
+                onClick={() => {
+                  colorMode.toggleColorMode();
+                }}
+                color="inherit"
+              >
+                {color === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+              </IconButton>
+            </Box>
           </>
         )}
-        <Drawer
-          anchor="right"
-          open={drawerOpen}
-          onClose={handleDrawerToggle}
-          PaperProps={{ style: { height: "auto" } }}
-        >
-          <List>
+        {isSmallScreen && (
+          <>
             <Box
               sx={{
                 display: { xs: "block", sm: "none" },
@@ -134,78 +222,112 @@ export default function NavBar({ theme, colorMode, color }) {
                 top: 0,
                 right: 0,
               }}
+              style={{ textAlign: "left" }}
             >
               <IconButton onClick={handleDrawerToggle}>
                 <MenuIcon />
               </IconButton>
             </Box>
-            <ListItem
-              button
-              onClick={() => handleChange(null, "IntroducingCard")}
+            <Drawer
+              anchor="right"
+              open={drawerOpen}
+              onClose={handleDrawerToggle}
+              PaperProps={{ style: { height: "auto" } }}
             >
-              <ListItemText primary="Home" />
-            </ListItem>
-            <ListItem button onClick={() => handleChange(null, "LernMoreCard")}>
-              <ListItemText primary="LernMoreCard" />
-            </ListItem>
-            <ListItem button onClick={() => handleChange(null, "About")}>
-              <ListItemText primary="About" />
-            </ListItem>
-            <ListItem button onClick={() => handleChange(null, "Contact")}>
-              <ListItemText primary="Contact" />
-            </ListItem>
-            <ListItem>
-              <IconButton
-                sx={{ ml: 1 }}
-                onClick={() => {
-                  colorMode.toggleColorMode();
-                  setDrawerOpen(false);
-                }}
-                color="inherit"
-              >
-                {color === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
-              </IconButton>
-            </ListItem>
-          </List>
-        </Drawer>
-        <BottomNavigation
-          value={value}
-          onChange={handleChange}
-          sx={{ display: { xs: "none", sm: "flex" } }}
-        >
-          <BottomNavigationAction
-            label="Home"
-            value="IntroducingCard"
-            icon={<HomeIcon />}
-          />
-          <BottomNavigationAction
-            label="See More Card"
-            value="LernMoreCard"
-            icon={<FavoriteIcon />}
-          />
-          <BottomNavigationAction
-            label="About"
-            value="About"
-            icon={<AccountCircleIcon />}
-          />
-          <Button
-            onClick={() => {
-              handlePopup();
-            }}
-          >
-            <BottomNavigationAction
-              label="Contact"
-              value="Contact"
-              icon={<ContactSupportIcon />}
-            />
-          </Button>
-        </BottomNavigation>
-        {value === "Home" && <IntroducingCard />}
-        {value === "About" && <About />}
-        {value === "IntroducingCard" && <IntroducingCard />}
-        {value === "LernMoreCard" && <LernMoreCard />}
-        {value === "Contact" && <Contact showPopup={true} />}
+              <List>
+                <ListItem
+                  button
+                  onClick={async () => {
+                    await handleDrawerToggle();
+                    navigateToSection("#home");
+                  }}
+                >
+                  <ListItemText primary="Home" />
+                </ListItem>
+                <ListItem
+                  button
+                  onClick={async () => {
+                    await handleDrawerToggle();
+                    navigateToSection("#learn-more");
+                  }}
+                >
+                  About
+                </ListItem>
+                <ListItem
+                  button
+                  onClick={async () => {
+                    await handleDrawerToggle();
+                    navigateToSection("#learn-more");
+                  }}
+                >
+                  <ListItemText primary="Learn More" />
+                </ListItem>
+                <ListItem
+                  button
+                  onClick={async () => {
+                    await handleDrawerToggle();
+                    navigateToSection("#about");
+                  }}
+                >
+                  <ListItemText primary="About" />
+                </ListItem>
+                <ListItem
+                  button
+                  onClick={async () => {
+                    await handleDrawerToggle();
+                    navigateToSection("#contact");
+                  }}
+                >
+                  <ListItemText primary="Contact" />
+                </ListItem>
+                <ListItem>
+                  <IconButton
+                    onClick={() => {
+                      colorMode.toggleColorMode();
+                    }}
+                    color="inherit"
+                  >
+                    {color === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+                  </IconButton>
+                </ListItem>
+              </List>
+            </Drawer>
+          </>
+        )}
+      </nav>
+
+      <Typography
+        marginTop={10}
+        textAlign={"center"}
+        variant="h2"
+        align="center"
+      >
+        Study Daddy
+      </Typography>
+      <ElevationScroll>
+        <div id="back-to-top-anchor" />
+      </ElevationScroll>
+      <Toolbar />
+      <Box>
+        <div id="home">
+          <IntroducingCard />
+        </div>
+        <br /> <br /> <br />
+        <div id="learn-more">
+          <LernMoreCard />
+        </div>
+        <br /> <br /> <br />
+        <div id="about">
+          <About />
+        </div>
+        <br /> <br /> <br />
+        <div id="contact">
+          <Contact />
+        </div>
       </Box>
-    </>
+      <ScrollTop
+        window={typeof window !== "undefined" ? () => window : undefined}
+      ></ScrollTop>
+    </div>
   );
 }

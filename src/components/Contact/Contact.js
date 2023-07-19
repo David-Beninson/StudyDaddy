@@ -1,103 +1,59 @@
 import * as React from "react";
-import {
-  Card,
-  CardContent,
-  IconButton,
-  Link,
-  Popper,
-  Typography,
-} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { Card, CardContent, Link, Typography } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
-const PopupDiv = ({ handlePopup, showPopup }) => {
-  const muiTheme = useTheme();
-  const isSmallScreen = useMediaQuery(muiTheme.breakpoints.down("sm"));
-  return (
-    <>
-      <Popper
-        open={showPopup}
-        style={{
-          position: "fixed",
-          zIndex: 9999,
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <Card elevation={3}>
-          {!isSmallScreen && (
-            <Typography variant="h6" align="right">
-              <div>
-                <IconButton
-                  edge="end"
-                  color="inherit"
-                  aria-label="close"
-                  onClick={() => {
-                    handlePopup();
-                  }}
-                  style={{ marginLeft: "auto" }}
-                >
-                  <CloseIcon />
-                </IconButton>
-              </div>
-            </Typography>
-          )}
-          <Typography>
-            <div>
-              <Typography variant="h6">
-                Tired of studying alone? We've got you covered!
-              </Typography>
-              <Card
-                variant="outlined"
-                style={{
-                  backgroundColor: "rgb(189, 90, 189)",
-                  color: "white",
-                  padding: "2rem",
-                  borderRadius: "1rem",
-                  marginBottom: "2rem",
-                }}
-              >
-                <CardContent>
-                  <div>
-                    <Typography variant="body1">
-                      {<EmailIcon />}Send me an email:
-                    </Typography>
-                    <Link
-                      href="mailto:beninsondavid@gmail.com"
-                      style={{
-                        marginRight: "0.5rem",
-                        textDecoration: "none",
-                      }}
-                    >
-                      beninsondavid@gmail.com
-                    </Link>
-                  </div>
-                  <div>
-                    <Typography variant="body1">
-                      {<WhatsAppIcon />} Reach out on WhatsApp:
-                    </Typography>
-                    <Link
-                      href="https://wa.me/+972536216125"
-                      style={{
-                        marginRight: "0.5rem",
-                        textDecoration: "none",
-                      }}
-                    >
-                      053-621-6125
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </Typography>
-        </Card>
-      </Popper>
-    </>
-  );
+const cardStyle = {
+  background: "#fff", // White background
+  borderRadius: "1rem",
+  padding: "2rem",
+  marginBottom: "2rem",
+  textAlign: "center",
+  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Light shadow
 };
 
-export default PopupDiv;
+const iconStyle = {
+  fontSize: "48px",
+  marginBottom: "1rem",
+  color: "#6200ea", // Purple color for icons
+};
+
+const textStyle = {
+  marginBottom: "1rem",
+};
+
+export default function Contact() {
+  return (
+    <Card sx={cardStyle}>
+      <CardContent>
+        <Typography variant="h5" gutterBottom>
+          Tired of studying alone? We've got you covered!
+        </Typography>
+        <div>
+          <Typography variant="body1" sx={textStyle}>
+            <EmailIcon sx={iconStyle} />
+            Send me an email:
+          </Typography>
+          <Link
+            href="mailto:beninsondavid@gmail.com"
+            style={{ textDecoration: "none", color: "#6200ea" }}
+          >
+            beninsondavid@gmail.com
+          </Link>
+        </div>
+        <div>
+          <Typography variant="body1" sx={textStyle}>
+            <WhatsAppIcon sx={iconStyle} />
+            Reach out on WhatsApp:
+          </Typography>
+          <Link
+            href="https://wa.me/+972536216125"
+            style={{ textDecoration: "none", color: "#6200ea" }}
+          >
+            053-621-6125
+          </Link>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}

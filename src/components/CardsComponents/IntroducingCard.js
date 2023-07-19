@@ -1,69 +1,41 @@
 import React from "react";
-import {
-  Typography,
-  Card,
-  CardContent,
-  Zoom,
-  Grid,
-  useMediaQuery,
-} from "@mui/material";
+import { Typography, Card, CardContent, Zoom, Grid } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+
+const cardStyle = {
+  background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)", // Gradient background
+  borderRadius: "1rem",
+  padding: "2rem",
+  marginBottom: "2rem",
+  color: "#fff", // White text color
+  textAlign: "center",
+  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Light shadow
+};
 
 export default function IntroducingCard() {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <>
-      <Grid container justifyContent="center" alignItems="center">
-        <Zoom in={true} timeout={1000}>
-          <div>
-            {isSmallScreen ? (
-              <>
-                <Typography
-                  variant="h4"
-                  style={{
-                    marginBottom: "1rem",
-                    height: isSmallScreen ? 80 : 100,
-                    fontSize: isSmallScreen ? "1.5rem" : "2.125rem",
-                  }}
-                  align="center"
-                >
-                  Introducing Study Daddy:
-                  <br />
-                  📚 Your Virtual Study Partner! 🎉
-                </Typography>
-                <Typography variant="body1">
-                  Do you often find yourself studying alone? Wish you had
-                  someone to discuss concepts, review notes, and stay motivated
-                  with? Need a dedicated study partner who understands your
-                  challenges?
-                </Typography>
-              </>
-            ) : (
-              <Card style={{ maxWidth: 400 }}>
-                <CardContent>
-                  <Typography
-                    variant="h4"
-                    style={{ marginBottom: "1rem" }}
-                    align="center"
-                  >
-                    Introducing Study Daddy:
-                    <br />
-                    📚 Your Virtual Study Partner! 🎉
-                  </Typography>
-                  <Typography variant="body1">
-                    Do you often find yourself studying alone? Wish you had
-                    someone to discuss concepts, review notes, and stay
-                    motivated with? Need a dedicated study partner who
-                    understands your challenges?
-                  </Typography>
-                </CardContent>
-              </Card>
-            )}
-          </div>
-        </Zoom>
-      </Grid>
-    </>
+    <Zoom in={true} timeout={1000}>
+      <div>
+        <Grid container justifyContent="center">
+          <Card sx={cardStyle}>
+            <CardContent>
+              <Typography variant="h4" gutterBottom>
+                Introducing Study Daddy:
+              </Typography>
+              <Typography variant="h6" gutterBottom>
+                Your Virtual Study Partner! 🎉
+              </Typography>
+              <Typography variant="body1">
+                Do you often find yourself studying alone? Wish you had someone
+                to discuss concepts, review notes, and stay motivated with? Need
+                a dedicated study partner who understands your challenges?
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      </div>
+    </Zoom>
   );
 }
