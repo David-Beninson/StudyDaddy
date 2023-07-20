@@ -1,20 +1,23 @@
 import React from "react";
 import { Typography, Card, CardContent, Zoom } from "@mui/material";
 
+const cardStyle = {
+  background: "#f0f0f0", // Light gray background
+  borderRadius: "1rem",
+  padding: "2rem",
+  marginBottom: "2rem",
+  textAlign: "center",
+  color: "black",
+  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Light shadow
+};
+
 export default function LernMoreCard() {
   return (
     <Zoom in={true} timeout={1000}>
       <div>
-        <Card
-          variant="outlined"
-          style={{
-            padding: "2rem",
-            borderRadius: "1rem",
-            marginTop: "2rem",
-          }}
-        >
-          <CardContent style={{ textAlign: "center" }}>
-            <Typography variant="h5" style={{ marginBottom: "1rem" }}>
+        <Card sx={cardStyle}>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>
               בואו להטעין את חווית הלימוד שלך! 🚀
             </Typography>
             <Typography variant="body1">

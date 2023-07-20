@@ -34,27 +34,6 @@ import {
   Drawer,
 } from "@mui/material";
 
-// Styling for the navigation bar
-const navbarStyle = {
-  backgroundColor: "#6200ea", // Use your desired background color
-  padding: "1rem",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-};
-
-// Styling for the buttons in the navigation bar
-const buttonStyle = {
-  color: "#fff", // White color for text
-  marginLeft: "1rem",
-  marginRight: "1rem",
-};
-
-// Styling for the color mode toggle button
-const colorModeButtonStyle = {
-  color: "#fff", // White color for text
-};
-
 function ElevationScroll({ children }) {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -65,10 +44,23 @@ function ElevationScroll({ children }) {
     elevation: trigger ? 4 : 0,
   });
 }
+function HideOnScroll({ children }) {
+  const trigger = useScrollTrigger({
+    target: typeof window !== "undefined" ? window : undefined,
+  });
+
+  const shouldHide = trigger;
+
+  return (
+    <Slide appear={false} direction="down" in={!shouldHide}>
+      {children}
+    </Slide>
+  );
+}
 
 function ScrollTop({ children, window }) {
   const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
+    target: typeof window !== "undefined" ? window() : undefined,
     disableHysteresis: true,
     threshold: 100,
   });
@@ -251,15 +243,6 @@ export default function NavBar({
                     navigateToSection("#learn-more");
                   }}
                 >
-                  About
-                </ListItem>
-                <ListItem
-                  button
-                  onClick={async () => {
-                    await handleDrawerToggle();
-                    navigateToSection("#learn-more");
-                  }}
-                >
                   <ListItemText primary="Learn More" />
                 </ListItem>
                 <ListItem
@@ -305,7 +288,9 @@ export default function NavBar({
         Study Daddy
       </Typography>
       <ElevationScroll>
-        <div id="back-to-top-anchor" />
+        <HideOnScroll>
+          <div id="back-to-top-anchor" />
+        </HideOnScroll>
       </ElevationScroll>
       <Toolbar />
       <Box>
