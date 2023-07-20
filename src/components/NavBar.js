@@ -1,18 +1,4 @@
 import * as React from "react";
-import "./styles.css";
-import About from "./About/About";
-import IntroducingCard from "./CardsComponents/IntroducingCard";
-import LernMoreCard from "./CardsComponents/LernMoreCard";
-import Contact from "./Contact/Contact";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import HomeIcon from "@mui/icons-material/Home";
-import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
-import ContactSupportOutlinedIcon from "@mui/icons-material/ContactSupportOutlined";
-import LanguageSharpIcon from "@mui/icons-material/LanguageSharp";
-import MenuIcon from "@mui/icons-material/Menu";
 import {
   useTheme,
   useMediaQuery,
@@ -33,6 +19,20 @@ import {
   ListItemText,
   Drawer,
 } from "@mui/material";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import HomeIcon from "@mui/icons-material/Home";
+import ContactSupportOutlinedIcon from "@mui/icons-material/ContactSupportOutlined";
+import LanguageSharpIcon from "@mui/icons-material/LanguageSharp";
+import MenuIcon from "@mui/icons-material/Menu";
+
+import "./styles.css";
+import About from "./About/About";
+import IntroducingCard from "./CardsComponents/IntroducingCard";
+import LernMoreCard from "./CardsComponents/LernMoreCard";
+import Contact from "./Contact/MainComtact";
 
 function ElevationScroll({ children }) {
   const trigger = useScrollTrigger({
