@@ -73,25 +73,27 @@ export default function Contact() {
                   <Typography variant="body1" sx={textStyle}>
                     <EmailIcon sx={iconStyle} />
                     Send me an email:
+                    <br />
+                    <Link
+                      href="mailto:beninsondavid@gmail.com"
+                      style={{ textDecoration: "none", color: "#6200ea" }}
+                    >
+                      beninsondavid@gmail.com
+                    </Link>
                   </Typography>
-                  <Link
-                    href="mailto:beninsondavid@gmail.com"
-                    style={{ textDecoration: "none", color: "#6200ea" }}
-                  >
-                    beninsondavid@gmail.com
-                  </Link>
                 </div>
                 <div>
                   <Typography variant="body1" sx={textStyle}>
                     <WhatsAppIcon sx={iconStyle} />
                     Reach out on WhatsApp:
+                    <br />
+                    <Link
+                      href="https://wa.me/+972536216125"
+                      style={{ textDecoration: "none", color: "#6200ea" }}
+                    >
+                      053-621-6125
+                    </Link>
                   </Typography>
-                  <Link
-                    href="https://wa.me/+972536216125"
-                    style={{ textDecoration: "none", color: "#6200ea" }}
-                  >
-                    053-621-6125
-                  </Link>
                 </div>
               </CardContent>
             </>

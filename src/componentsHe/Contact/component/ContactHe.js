@@ -14,7 +14,7 @@ import Icon from "../../../images/Avatar.jpg";
 const iconStyle = {
   fontSize: "48px",
   marginBottom: "1rem",
-  color: "#6200ea", // Purple color for icons
+  color: "#6200ea",
 };
 
 const textStyle = {

@@ -59,8 +59,8 @@ const InptContact = () => {
         }}
         id="connect"
       >
-        <Container sx={{ display: "flex", position: "relative" }}>
-          <div>
+        <Container>
+          <div className="animate__animated animate__fadeIn">
             <form
               ref={form}
               onSubmit={sendEmail}
@@ -68,6 +68,8 @@ const InptContact = () => {
                 marginTop: "16px",
                 display: "flex",
                 flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
                 width: "100%",
                 maxWidth: "500px",
               }}
@@ -91,7 +93,7 @@ const InptContact = () => {
                 style={{ marginBottom: "16px" }}
                 variant="outlined"
                 name="user_email"
-                label="כתובת אימייל"
+                label="כתובת מייל"
                 required
                 InputLabelProps={{ style: { color: "gray" } }}
               />
@@ -99,7 +101,7 @@ const InptContact = () => {
                 style={{ marginBottom: "16px" }}
                 variant="outlined"
                 name="phone_number"
-                label="טלפון"
+                label="מספר טלפון"
                 InputLabelProps={{ style: { color: "gray" } }}
               />
               <TextField
@@ -119,7 +121,7 @@ const InptContact = () => {
                 }}
                 variant="contained"
                 type="submit"
-                endIcon={<SendIcon />}
+                startIcon={<SendIcon />}
                 disabled={buttonText === "...שולח"}
               >
                 {buttonText}

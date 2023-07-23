@@ -8,7 +8,7 @@ const aboutContainerStyle = {
   borderRadius: "1rem",
   padding: "2rem",
   marginBottom: "2rem",
-  textAlign: "right",
+  textAlign: "center",
   boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
   color: "black",
   maxHeight: "500px",
@@ -24,12 +24,12 @@ export default function About() {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Box sx={aboutContainerStyle}>
-            <InptContact />
+            <Contact />
           </Box>
         </Grid>
         <Grid item xs={12} sm={6}>
           <Box sx={aboutContainerStyle}>
-            <Contact />
+            <InptContact />
           </Box>
         </Grid>
       </Grid>
