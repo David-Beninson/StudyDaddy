@@ -5,7 +5,7 @@ import emailjs from "emailjs-com";
 import SendIcon from "@mui/icons-material/Send";
 
 const InptContact = () => {
-  const [buttonText, setButtonText] = useState("Send");
+  const [buttonText, setButtonText] = useState("שלח");
   const [status, setStatus] = useState({});
 
   const form = useRef();
@@ -22,7 +22,7 @@ const InptContact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    setButtonText("Sending...");
+    setButtonText("...שולח");
     emailjs
       .sendForm(
         `service_nfxdgzo`,
@@ -32,20 +32,20 @@ const InptContact = () => {
       )
       .then(
         (result) => {
-          setButtonText("Send");
+          setButtonText("נשלח");
           setStatus({
             severity: "success",
-            message: "Message sent successfully",
+            message: "הודעה נשלחה בהצלחה",
           });
           console.log(result.text);
         },
         (error) => {
           setStatus({
             severity: "error",
-            message: "Something went wrong, please try again later.",
+            message: "משהו השתבש, אנא נסו שוב מאוחר יותר",
           });
           console.log(error.text);
-          setButtonText("Send");
+          setButtonText("נשלח");
         }
       );
   };
@@ -59,8 +59,8 @@ const InptContact = () => {
         }}
         id="connect"
       >
-        <Container>
-          <div className="animate__animated animate__fadeIn">
+        <Container sx={{ display: "flex", position: "relative" }}>
+          <div>
             <form
               ref={form}
               onSubmit={sendEmail}
@@ -68,8 +68,6 @@ const InptContact = () => {
                 marginTop: "16px",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
                 width: "100%",
                 maxWidth: "500px",
               }}
@@ -78,7 +76,7 @@ const InptContact = () => {
                 style={{ marginBottom: "16px" }}
                 variant="outlined"
                 name="first_name"
-                label="First Name"
+                label="שם פרטי"
                 required
                 InputLabelProps={{ style: { color: "gray" } }}
               />
@@ -86,14 +84,14 @@ const InptContact = () => {
                 style={{ marginBottom: "16px" }}
                 variant="outlined"
                 name="last_name"
-                label="Last Name"
+                label="שם משפחה"
                 InputLabelProps={{ style: { color: "gray" } }}
               />
               <TextField
                 style={{ marginBottom: "16px" }}
                 variant="outlined"
                 name="user_email"
-                label="Email Address"
+                label="כתובת אימייל"
                 required
                 InputLabelProps={{ style: { color: "gray" } }}
               />
@@ -101,12 +99,12 @@ const InptContact = () => {
                 style={{ marginBottom: "16px" }}
                 variant="outlined"
                 name="phone_number"
-                label="Phone No."
+                label="טלפון"
                 InputLabelProps={{ style: { color: "gray" } }}
               />
               <TextField
                 id="outlined-multiline-flexible"
-                label="Message"
+                label="הודעה"
                 multiline
                 maxRows={2}
                 minRows={2}
@@ -121,8 +119,8 @@ const InptContact = () => {
                 }}
                 variant="contained"
                 type="submit"
-                startIcon={<SendIcon />}
-                disabled={buttonText === "Sending..."}
+                endIcon={<SendIcon />}
+                disabled={buttonText === "...שולח"}
               >
                 {buttonText}
               </Button>

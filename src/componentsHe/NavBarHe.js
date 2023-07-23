@@ -3,16 +3,16 @@ import "./styles.css";
 import About from "./About/AboutHe";
 import IntroducingCard from "./CardsComponents/IntroducingCardHe";
 import LernMoreCard from "./CardsComponents/LernMoreCardHe";
-import Contact from "./Contact/ContactHe";
+import Contact from "./Contact/MainContactHe";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import HomeIcon from "@mui/icons-material/Home";
-import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import ContactSupportOutlinedIcon from "@mui/icons-material/ContactSupportOutlined";
 import LanguageSharpIcon from "@mui/icons-material/LanguageSharp";
 import MenuIcon from "@mui/icons-material/Menu";
+
 import {
   useTheme,
   useMediaQuery,

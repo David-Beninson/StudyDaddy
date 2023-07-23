@@ -32,7 +32,7 @@ import "./styles.css";
 import About from "./About/About";
 import IntroducingCard from "./CardsComponents/IntroducingCard";
 import LernMoreCard from "./CardsComponents/LernMoreCard";
-import Contact from "./Contact/MainComtact";
+import Contact from "./Contact/MainContact";
 
 function ElevationScroll({ children }) {
   const trigger = useScrollTrigger({

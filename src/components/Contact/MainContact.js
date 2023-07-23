@@ -11,6 +11,8 @@ const aboutContainerStyle = {
   borderRadius: "1rem",
   textAlign: "center",
   boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+  maxHeight: "500px",
+  minHeight: "500px",
 };
 
 export default function About() {
@@ -21,7 +23,7 @@ export default function About() {
       </Typography>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={6}>
-          <Box>
+          <Box sx={aboutContainerStyle}>
             <Contact />
           </Box>
         </Grid>

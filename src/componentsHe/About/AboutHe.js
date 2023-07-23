@@ -1,14 +1,5 @@
 import React from "react";
-import { Avatar, Grid, Link, Box, Typography } from "@mui/material";
-import Icon from "../../images/Avatar.jpg";
-
-const avatarStyle = {
-  width: "150px",
-  height: "150px",
-  borderRadius: "50%",
-  marginBottom: "1rem",
-  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-};
+import { Grid, Link, Box, Typography } from "@mui/material";
 
 const aboutContainerStyle = {
   maxWidth: "800px",
@@ -33,55 +24,10 @@ const textStyle = {
   marginBottom: "1rem",
 };
 
-const linkStyle = {
-  color: "#6200ea",
-  textDecoration: "none",
-  display: "inline-block",
-  marginBottom: "0.5rem",
-  marginRight: "1rem",
-};
-
 export default function About() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3} justifyContent="center">
-        <Grid item xs={9} sm={3}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: "200px", // Set a minimum height to keep the Avatar centered
-            }}
-          >
-            <Avatar alt="David Beninson" src={Icon} sx={avatarStyle} />
-            <Link
-              href="https://www.facebook.com/david.dav.5220"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={linkStyle}
-            >
-              פייסבוק
-            </Link>
-            <Link
-              href="https://www.instagram.com/beninsondavid/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={linkStyle}
-            >
-              אינסטגרם
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/david-beninson/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={linkStyle}
-            >
-              ליקדאין
-            </Link>
-          </Box>
-        </Grid>
         <Grid item xs={18} sm={9}>
           <Box sx={aboutContainerStyle}>
             <Typography variant="h4" sx={headingStyle}>
@@ -98,9 +44,6 @@ export default function About() {
               וטיפול בלקוחות. עכשיו, אני נרגש להשתמש בכישורים שלי כדי לעזור
               לאנשים למצוא שותפים ללימודים דרך העסק שלי.
             </Typography>
-            <Link href="#contact" style={linkStyle}>
-              Let's Connect
-            </Link>
           </Box>
         </Grid>
       </Grid>
